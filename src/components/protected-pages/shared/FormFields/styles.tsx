@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Field } from 'formik'
 
 type TextInput = {
     background?: string
@@ -8,10 +9,10 @@ type TextInput = {
 }
 
 export const InputLabel = styled.label`
-    color:${props => props.theme.colors.secondaryColor}
+    color:${props => props.theme.colors.secondaryColor};
 `
 
-export const TextInputElement = styled.input.attrs(props => ({ type: props.type })) <TextInput>`
+export const TextInputElement = styled(Field)<TextInput>`
     outline:none;
     border: none;
     border-bottom:1px solid ${props => props.theme.colors.secondaryColor};

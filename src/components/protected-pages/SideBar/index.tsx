@@ -1,10 +1,13 @@
-import { useState } from 'react';
-import { faEye, faMoneyCheckAlt, faPiggyBank, faChartBar, faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons'
-import ReactTooltip from 'react-tooltip'
-import Theme from "./Theme";
-import { SideBarContainer, SideBarLogo, SideBarItems, MenuLink, MenuIcon } from "./styles";
+import { useContext, useState } from 'react';
+import { ThemeContext } from 'styled-components';
+import { faChartBar, faEye, faMoneyCheckAlt, faPiggyBank, faPowerOff, faUser } from '@fortawesome/free-solid-svg-icons';
+import { MenuIcon, MenuLink, SideBarContainer, SideBarItems, SideBarLogo } from "./styles";
+import ReactTooltip from 'react-tooltip';
+import Theme from "../shared/Theme";
+import { logOut } from '../../../services/users';
 
 export default function SideBar() {
+    const { colors } = useContext(ThemeContext)
 
     const [menu, setMenu] = useState([
         { id: 1, textHover: 'Overview', icon: faEye, path: '/', active: true },
@@ -17,6 +20,12 @@ export default function SideBar() {
     ])
 
     const handleMenu = (id: number) => {
+        switch (id) {
+            case 6: {
+                logOut()
+                break
+            }
+        }
         menu.map(m => id === m.id ? m.active = true : m.active = false)
         setMenu([...menu])
     }
@@ -28,23 +37,22 @@ export default function SideBar() {
                 {menu.map(m => {
                     return (
                         <>
-                        <MenuLink key={m.id} to={m.path}>
-                            <MenuIcon
-                                data-tip
-                                data-for={`${m.id}`}
-                                active={m.active}
-                                onClick={() => handleMenu(m.id)}
-                                size={'2x'} icon={m.icon} />
-                            <ReactTooltip
-                                id={`${m.id}`}
-                                type={'info'}
-                                backgroundColor={'#FFFFFF'}
-                                textColor={'#2C2C2C'}
-                                border={true}
-                                place={'right'}
-                                getContent={() => m.textHover}
-                            />
-                        </MenuLink>
+                            <MenuLink key={Math.random()} to={m.path}>
+                                <MenuIcon
+                                    data-tip
+                                    data-for={`${m.id}`}
+                                    active={m.active}
+                                    onClick={() => handleMenu(m.id)}
+                                    size={'2x'} icon={m.icon} />
+                                <ReactTooltip
+                                    id={`${m.id}`}
+                                    backgroundColor={colors.secondaryColor}
+                                    textColor={colors.primaryColor}
+                                    border={true}
+                                    place={'right'}
+                                    getContent={() => m.textHover}
+                                />
+                            </MenuLink>
                         </>
                     )
                 })}

@@ -2,9 +2,9 @@ const light = {
     title: 'light',
     colors: {
         primaryColor: '#fafafa',
-        secondaryColor: '#2c2c2c',
-        iconColor: 'rgba(0,0,0,0.1)',
-        placeholder: 'rgba(43,43,43,0.4)'
+        secondaryColor: '#2C2C2C',
+        iconColor: 'rgba(0,0,0,0.3)',
+        placeholder: 'rgba(0,0,0,0.6)'
     }
 }
 

@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
-import { faCloudSun, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
-import { ThemeContext } from 'styled-components'
+import { useContext } from 'react'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { ToggleContext } from '../../../../contexts/toggle-theme'
 import { Icon, IconBorder, ThemeAreaContainer } from './styles'
 
@@ -8,7 +7,6 @@ export default function Theme() {
     const { handleTheme } = useContext(ToggleContext)
     const choseTheme = [
         { title: 'light', icon: faSun },
-        { title: 'light-dark', icon: faCloudSun },
         { title: 'dark', icon: faMoon },
     ]
 

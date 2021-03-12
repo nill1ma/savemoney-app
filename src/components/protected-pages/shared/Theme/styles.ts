@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const ThemeAreaContainer = styled.div`
     width:2rem;
-    height:6rem;
+    height:3.8rem;
     display:flex;
     flex-direction:column;
     justify-content:space-evenly;
@@ -25,6 +25,7 @@ export const IconBorder = styled.div`
 
 export const Icon = styled(FontAwesomeIcon)`
     color:${props => props.title === props.theme.title ? props.theme.colors.secondaryColor : props.theme.colors.primaryColor};
+    opacity: ${props => props.title === props.theme.title ? 1 : 0.5};
     cursor: pointer;
 `
 

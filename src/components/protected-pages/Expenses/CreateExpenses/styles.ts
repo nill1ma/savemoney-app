@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 type Field = {
-    width:any
-    margin:any
+    width: any
+    margin: any
 }
 
 export const ExpensesContainer = styled.div`
@@ -14,8 +14,8 @@ export const FieldArea = styled.div<Field>`
     display:flex;
     flex-direction:column;
     align-items:flex-start;
-    width:${props=>props.width};
-    margin:${props=>props.margin};
+    width:${props => props.width};
+    margin:${props => props.margin};
 `
 export const ExpensesFormArea = styled.div`
     display:flex;
@@ -23,6 +23,9 @@ export const ExpensesFormArea = styled.div`
     height:60%;
     width:47.688rem;
 `
+
+export const Form = styled.form``
+
 export const ButtonsAreaContainer = styled.div`
     display:flex;
     flex-direction:column;

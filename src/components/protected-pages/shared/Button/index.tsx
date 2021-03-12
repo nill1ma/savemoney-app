@@ -10,6 +10,7 @@ type TypesButtonProps = {
     margin?: string
     children?: string
     onClickAction?: () => void
+    buttonType:any
 }
 
 export function Button(props: TypesButtonProps) {
@@ -22,7 +23,9 @@ export function Button(props: TypesButtonProps) {
         fontWeight,
         margin,
         children,
-        onClickAction
+        onClickAction,
+        buttonType
+        
     } = props
 
     return (
@@ -33,6 +36,7 @@ export function Button(props: TypesButtonProps) {
             fontSize={fontSize}
             fontWeight={fontWeight}
             margin={margin}
+            type={buttonType}
             onClick={onClickAction}>
             {children}
         </ButtonContainer>
