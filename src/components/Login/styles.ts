@@ -3,7 +3,7 @@ import darkLogo from '../../assets/dark-logo.png'
 import lightkLogo from '../../assets/light-logo.png'
 import bgLoginDark from '../../assets/Icons.png'
 import bgLoginLight from '../../assets/light-icons.png'
-import { ThemeTypesEnum } from '../../models/themeEnum'
+import { ThemeTypesEnum } from '../../models/ThemeEnum'
 
 type Login = {
     background?: string

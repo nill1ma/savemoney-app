@@ -20,7 +20,7 @@ export const SideBarContainer = styled.div<SideBar>`
     align-items:center;
     width:8.563rem;
     height:100vh;
-    background:${props => props.theme.colors.primaryColor};
+    background:${props => props.theme.title === 'light'? props.theme.colors.secondaryColor : props.theme.colors.primaryColor};
 `
 export const SideBarLogo = styled.img.attrs({ src: logo })``
 
@@ -35,6 +35,6 @@ export const SideBarItems = styled.div`
 export const MenuLink = styled(Link)``
 
 export const MenuIcon = styled(FontAwesomeIcon)<SideBar>`
-    color:${props => props.active ? props.theme.colors.secondaryColor : props.theme.colors.iconColor};
+    color:${props => props.active ? '#fafafa' : props.theme.colors.iconColor};
     cursor: pointer;
 `

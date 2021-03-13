@@ -1,8 +1,9 @@
+import { ChangeEvent } from "react";
 import { LoginTextInput } from "./styles";
 type SignInOrSignUp = {
     isSignIn?: boolean
     background: string
-    onChangeAction: (e: any) => void
+    onChangeAction: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export default function Form(props: SignInOrSignUp) {
     const { background, onChangeAction, isSignIn } = props
@@ -18,12 +19,12 @@ export default function Form(props: SignInOrSignUp) {
                 return (
                     form.show &&
                     <LoginTextInput
+                        key={form.name}
                         type={form.type}
                         name={form.name}
-                        onChange={(e: any) => onChangeAction(e)}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => onChangeAction(e)}
                         background={background}
-                        placeholder={form.placeholder}
-                        key={Math.random()} />
+                        placeholder={form.placeholder}/>
                 )
             })}
         </>

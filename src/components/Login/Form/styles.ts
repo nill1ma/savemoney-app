@@ -15,7 +15,6 @@ export const LoginTextInput = styled.input.attrs(props=>({type:props.type}))<Inp
     width:100%;
     height:2.75rem;
     margin-top:1.5rem;
-    transition:all 10s linear;
     ::placeholder{
         color:${props => props.theme.colors.secondaryColor};
         opacity: 0.9;

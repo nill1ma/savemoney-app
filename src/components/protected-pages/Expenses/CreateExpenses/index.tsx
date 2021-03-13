@@ -1,28 +1,15 @@
 import { Form, Formik } from 'formik'
-import { useEffect, useLayoutEffect } from 'react'
+import { save } from '../../../../commons/firebase'
 import { useAuth } from '../../../../contexts/auth'
-import { Expenses } from '../../../../models/expenses'
-import { firebase } from '../../../../services/firebase_config'
+import { Expenses } from '../../../../models/Expenses'
 import { Button } from '../../shared/Button'
-import FormFields from '../../shared/FormFields'
 import { ButtonsAreaContainer, ExpensesFormArea, FieldArea } from './styles'
+import FormFields from '../../shared/FormFields'
 
-const db = firebase.database()
+
 export default function CreateExpenses() {
-
-    const {user} = useAuth()
-
-    const form = [
-        { name: 'name', placeholder: 'Name', width: '100%', type: 'text' },
-        { name: 'cathegory', placeholder: 'Cathegory', width: '100%', type: 'text' },
-        { name: 'dueDate', placeholder: 'Due date', width: '45%', type: 'date' },
-        { name: 'payDay', placeholder: 'Pay Day', width: '45%', type: 'date' },
-        { name: 'billAmount', placeholder: 'Bill amount', width: '45%', type: 'number' },
-        { name: 'amountPaid', placeholder: 'Amount Paid', width: '45%', type: 'number' }
-    ]
-    useEffect(()=>{
-        console.log(user!.displayName)
-    },[])
+    const { user } = useAuth()
+    
     const expenseInitialValues: Expenses = {
         name: '',
         cathegory: '',
@@ -31,12 +18,16 @@ export default function CreateExpenses() {
         billAmount: 0,
         amountPaid: 0,
     }
-
-    const saveExpense = (values: Expenses, actions:any) => {
-
-        const expensesRef = db.ref('expenses')
-        const newExpensesRef = expensesRef.push()
-        newExpensesRef.set({...values, userId:user!.uid})
+    const form = [
+        { name: 'name', placeholder: 'Name', width: '100%', type: 'text' },
+        { name: 'cathegory', placeholder: 'Cathegory', width: '100%', type: 'text' },
+        { name: 'dueDate', placeholder: 'Due date', width: '45%', type: 'date' },
+        { name: 'payDay', placeholder: 'Pay Day', width: '45%', type: 'date' },
+        { name: 'billAmount', placeholder: 'Bill amount', width: '45%', type: 'number' },
+        { name: 'amountPaid', placeholder: 'Amount Paid', width: '45%', type: 'number' }
+    ]
+    const saveExpense = async (values: Expenses, actions: any) => {
+        await save('expenses',values, user!.uid)
         console.log('Clicou', values)
     }
     return (
