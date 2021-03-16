@@ -1,6 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components'
 
-
 type Grid = {
     background?: string
     secondaryColor?: string
@@ -11,7 +10,6 @@ type Grid = {
 export const GridContainer = styled.div`
     display:flex;
     flex-direction:column;
-    align-items:center;
     width:100%;
 `
 export const GridHeaderItem = styled.div`
@@ -23,20 +21,18 @@ export const GridHeaderItem = styled.div`
     background:${props => isLightTheme(props.theme) ? props.theme.colors.secondaryColor : props.theme.colors.primaryColor};
     color:${props => isLightTheme(props.theme) ? props.theme.colors.primaryColor : props.theme.colors.secondaryColor};
 `
-
 export const GridItemBox = styled.div<Grid>`
     width:100%;
     display:flex;
     align-items:center;
     height:5em;
 `
-
-export const GridItemText = styled.span<Grid>`
+export const GridItemText = styled.strong<Grid>`
     display:flex;
+    text-transform: capitalize;
     justify-content:center;
     width:${props => (100 / props.lengthOfObjects!)}%;
 `
-
 export const GridItemsContainer = styled.div`
     width:90%;
     display:flex;
@@ -50,7 +46,6 @@ export const GridItemsContainer = styled.div`
         color:${props => props.theme.colors.secondaryColor};
     }
 `
-
 const isLightTheme = (theme: DefaultTheme) => {
     return theme.title === 'light'
 }

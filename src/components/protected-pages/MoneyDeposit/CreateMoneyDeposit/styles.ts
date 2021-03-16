@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
 type Field = {
-    width: any
-    margin: any
+    width: string
+    margin: string
 }
 
 export const MoneyDepositContainer = styled.div`
     display:flex;
+    flex-direction:column;
     width:100%;
     background:${props => props.theme.colors.primaryColor}
 `

@@ -2,8 +2,8 @@ export interface Expenses {
     id?:string
     name: string
     cathegory: string
-    dueDate: Date
-    payDay: Date
+    dueDate: string
+    payDay: string
     billAmount: number
     amountPaid: number
 }

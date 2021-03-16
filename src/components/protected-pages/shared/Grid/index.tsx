@@ -1,21 +1,24 @@
-
+import { useEffect, useState } from "react";
+import { Expenses } from "../../../../models/Expenses";
+import { MoneyDeposit } from "../../../../models/MoneyDeposit";
 import { GridContainer, GridHeaderItem, GridItemBox, GridItemsContainer, GridItemText } from "./styles";
 
-export default function Grid() {
 
-    const header = [
-        'Origin', 'Gross Amount', 'Tax', 'Reference', 'Country'
-    ]
 
-    const data = [
-        { origin: 'TW', grossAmount: 10768.61, tax: 2000.00, reference: '03/2021', country: 'Brazil' },
-        { origin: 'TW', grossAmount: 11768.61, tax: 2000.00, reference: '03/2022', country: 'Chile' },
-        { origin: 'TW', grossAmount: 12768.61, tax: 2000.00, reference: '03/2023', country: 'Noth America' },
-        { origin: 'TW', grossAmount: 13768.61, tax: 2000.00, reference: '03/2023', country: 'Noth America' },
-        { origin: 'TW', grossAmount: 14768.61, tax: 2000.00, reference: '03/2025', country: 'Noth America' }
-    ]
+type TDataProps = {
+    dataProps: Expenses[] | MoneyDeposit[]
+}
 
-    const lengthOfObject = Object.keys(data[0]).length
+export default function Grid(props: TDataProps) {
+    const { dataProps } = props
+
+    const [data, setData] = useState(dataProps)
+
+    useEffect(() => {
+        setData(dataProps)
+    }, [dataProps])
+
+    const dataFields = Object.keys(data[0])
 
     return (
         <>
@@ -23,22 +26,19 @@ export default function Grid() {
                 <GridItemsContainer>
                     <>
                         <GridHeaderItem>
-                            {header.map(h => {
+                            {dataFields.map(h => {
                                 return (
-
-                                    <GridItemText lengthOfObjects={lengthOfObject}>{h}</GridItemText>
+                                    <GridItemText lengthOfObjects={dataFields.length}>{h.split(/(?=[A-Z])/).map(hd=>`${hd} `)}</GridItemText>
                                 )
                             })}
                         </GridHeaderItem>
-                        {data.map(m => {
+                        {data.map((d: any) => {
                             return (
-                                <GridItemBox>
-                                    <GridItemText lengthOfObjects={lengthOfObject}>{m.origin}</GridItemText>
-                                    <GridItemText lengthOfObjects={lengthOfObject}>{m.grossAmount}</GridItemText>
-                                    <GridItemText lengthOfObjects={lengthOfObject}>{m.tax}</GridItemText>
-                                    <GridItemText lengthOfObjects={lengthOfObject}>{m.reference}</GridItemText>
-                                    <GridItemText lengthOfObjects={lengthOfObject}>{m.country}</GridItemText>
-
+                                <GridItemBox key={`${dataFields}${Math.random()}`}>
+                                    {dataFields.map((h: string) => (
+                                        <GridItemText key={`${h}${Math.random()}`} lengthOfObjects={dataFields.length}>{d[h]}</GridItemText>
+                                    )
+                                    )}
                                 </GridItemBox>
                             )
                         })}

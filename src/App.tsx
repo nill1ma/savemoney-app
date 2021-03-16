@@ -16,6 +16,7 @@ import './App.css';
 import './styles/globals';
 import CreateMoneyDeposit from './components/protected-pages/MoneyDeposit/CreateMoneyDeposit';
 import MoneyDepositList from './components/protected-pages/MoneyDeposit/MoneyDepositList';
+import ExpensesList from './components/protected-pages/Expenses/ExpensesList';
 
 export default function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('sm-theme', dark)
@@ -46,6 +47,7 @@ export default function App() {
                   <PrivateRoutes path='/' component={SideBar} />
                   <PrivateRoutes exact path='/overview' component={Overview} />
                   <PrivateRoutes exact path='/create-expenses' component={CreateExpenses} />
+                  <PrivateRoutes exact path='/list-expenses' component={ExpensesList} />
                   <PrivateRoutes exact path='/money-deposit' component={CreateMoneyDeposit} />
                   <PrivateRoutes exact path='/list-money-deposit' component={MoneyDepositList} />
                 </>
