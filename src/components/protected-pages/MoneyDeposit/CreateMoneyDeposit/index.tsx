@@ -17,8 +17,7 @@ export default function CreateMoneyDeposit() {
         origin: '',
         grossAmount: 0,
         tax: 0,
-        reference: '',
-        country:''
+        reference: ''
     }
     
     const form:Forms[] = [

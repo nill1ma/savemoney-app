@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Expenses } from "../../../../models/Expenses";
 import { MoneyDeposit } from "../../../../models/MoneyDeposit";
 import { GridContainer, GridHeaderItem, GridItemBox, GridItemsContainer, GridItemText } from "./styles";
@@ -9,10 +8,8 @@ type TDataProps = {
 
 export default function Grid(props: TDataProps) {
     const { dataProps } = props
-
-    const [data] = useState(dataProps)
-
-    const dataFields = Object.keys(data[0])
+    const [firstLineProps] = dataProps
+    const dataFields = Object.keys(firstLineProps)
 
     return (
         <>
@@ -24,7 +21,7 @@ export default function Grid(props: TDataProps) {
                                 <GridItemText lengthOfObjects={dataFields.length}>{h.split(/(?=[A-Z])/).map(hd => `${hd} `)}</GridItemText>
                             )}
                         </GridHeaderItem>
-                        {data.map((d: any) => {
+                        {dataProps.map((d: any) => {
                             return (
                                 <GridItemBox key={`${dataFields}${Math.random()}`}>
                                     {dataFields.map((h: string) =>

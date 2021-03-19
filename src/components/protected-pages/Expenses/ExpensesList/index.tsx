@@ -1,32 +1,35 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Expenses } from "../../../../models/Expenses"
 import { RoutesEnum } from "../../../../models/RoutesEnum"
 import { ITabs } from "../../../../models/Tabs"
-import Grid from "../../shared/Grid"
-import Tabs from "../../shared/Tabs/inedx"
+import { get } from "../../../../commons/firebase"
 import { ExpensesGridContainer, ExpensesListContainer } from "./styles"
+import Grid from "../../shared/Grid"
+import InfoEmpityMessage from "../../shared/InfoEmpityMessage"
+import Tabs from "../../shared/Tabs/inedx"
 
 export default function ExpensesList() {
+
+    const [dataExpenses] = useState<Expenses[]>(get<Expenses>('expenses'))
+
+    useEffect(() => {
+        console.log(dataExpenses)
+    }, [dataExpenses])
 
     const tabs: ITabs[] = [
         { title: 'Create', link: RoutesEnum.CREATE_EXPENSES, active: false },
         { title: 'List', link: RoutesEnum.LIST_EXPENSES, active: true }
     ]
 
-    const [data] = useState<Expenses[]>([
-        { name: 'English', cathegory: 'Learn to fly', dueDate: '01-11-2021', payDay: '01-11-2021', billAmount: 250, amountPaid: 250 },
-        { name: 'English', cathegory: 'Learn to fly', dueDate: '01-11-2021', payDay: '01-11-2021', billAmount: 250, amountPaid: 250 },
-        { name: 'English', cathegory: 'Learn to fly', dueDate: '01-11-2021', payDay: '01-11-2021', billAmount: 250, amountPaid: 250 },
-        { name: 'English', cathegory: 'Learn to fly', dueDate: '01-11-2021', payDay: '01-11-2021', billAmount: 250, amountPaid: 250 },
-        { name: 'English', cathegory: 'Learn to fly', dueDate: '01-11-2021', payDay: '01-11-2021', billAmount: 250, amountPaid: 250 }
-    ])
-
     return (
-       
+
         <ExpensesListContainer>
             <Tabs tabs={tabs} />
             <ExpensesGridContainer>
-                <Grid dataProps={data} />
+                {dataExpenses && dataExpenses.length > 0 ?
+                    <Grid dataProps={dataExpenses} />
+                    : <InfoEmpityMessage />
+                }
             </ExpensesGridContainer>
         </ExpensesListContainer>
     )

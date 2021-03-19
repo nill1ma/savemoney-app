@@ -4,5 +4,4 @@ export interface MoneyDeposit {
     grossAmount: number
     tax: number
     reference: string
-    country:string
 }
